@@ -1,0 +1,47 @@
+Django is a high level web framework wriiten in python thta encourages rapid development and clean, pragmatic design.
+It emphasizes reusability and don't repeat yourself principles which means it tries to keep your code simple and not repetitive.
+It follows MVT architectural pattern.
+It was created in 2003.
+
+Features
+Built in Admin Interface
+ORM
+Authentication system
+Rapid development
+Security
+Versatibilty
+
+Prerequisite
+HTML
+CSS
+Javascript
+SQL
+python
+MVT
+PIP
+
+How to Install
+Install Virtual Environment
+pip install virtualenv
+
+Create and activate virtual Environment
+virtualenv "name"
+name\Scripts\activate
+
+install Django
+pip install Django
+
+Django project
+It may contain multiple project application, which means a group of application and files is called as django project.
+An application is a part of Django project.
+
+Create Django project
+If no project folder exists
+Syntax: django-admin startproject projectname
+
+If project file exists
+Syntax: django-admin startproject projectname .
+
+Run server
+python mange.py runserver
+
