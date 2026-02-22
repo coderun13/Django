@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booktech | Authors Directory</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --bg: #f3f4f6;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .author-container {
+            width: 100%;
+            max-width: 600px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .author-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            list-style: none;
+        }
+
+        .author-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary);
+        }
+
+        .author-link {
+            text-decoration: none;
+            color: inherit;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .author-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .view-btn {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 500;
+            background: #eef2ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .nav-footer {
+            margin-top: 3rem;
+        }
+
+        .btn-home {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .btn-home:hover {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Booktech Authors</h1>
+
+    <div class="author-container">
+        {% for author in authors %}
+            <div class="author-card">
+                <a class="author-link" href="{% url 'books_by_author' author.id %}">
+                    <span class="author-name"> {{ author.first_name }} {{ author.last_name }}</span>
+                    <span class="view-btn">View Books →</span>
+                </a>
+            </div>
+        {% empty %}
+            <p style="text-align: center; color: var(--text-muted);">No authors added to the database yet.</p>
+        {% endfor %}
+    </div>
+
+    <div class="nav-footer">
+        <a href="{% url 'book_list_fbv' %}" class="btn-home">← Back to Main Library</a>
+    </div>
+
+</body>
+</html>

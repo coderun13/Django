@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booktech | Library</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        /* Book List Styling */
+        .book-grid {
+            list-style: none;
+            padding: 0;
+        }
+
+        .book-item {
+            background: var(--card-bg);
+            margin-bottom: 10px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .book-item:hover {
+            transform: translateX(10px);
+            border-left: 5px solid var(--primary);
+        }
+
+        .book-link {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            display: block;
+        }
+
+        /* Action Buttons */
+        .actions {
+            margin-top: 3rem;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .btn-secondary {
+            background: #64748b;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Booktech Library</h1>
+
+        <ul class="book-grid">
+            {% for book in books %}
+            <li class="book-item">
+                <a class="book-link" href="{% url 'book_detail_fbv' book.id %}">
+                     {{ book.title }}
+                </a>
+            </li>
+            {% empty %}
+            <li>No books found. Add one below!</li>
+            {% endfor %}
+        </ul>
+
+        <hr style="margin-top: 2rem; border: 0; border-top: 1px solid #ddd;">
+
+        <div class="actions">
+            <a href="{% url 'author_list' %}" class="btn btn-secondary">Authors List</a>
+            <a href="{% url 'add_book' %}" class="btn">Add Book</a>
+            <a href="{% url 'add_book_and_author' %}" class="btn">Add Book Author</a>
+            <a href="{% url 'add_book_with_author_publisher' %}" class="btn">Add Publisher</a>
+        </div>
+    </div>
+</body>
+</html>

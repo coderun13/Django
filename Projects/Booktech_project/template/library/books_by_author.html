@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booktech | {{ author.first_name }} {{ author.last_name }}</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg: #f8fafc;
+            --text-main: #1e293b;
+            --accent: #f43f5e;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Author Profile Header */
+        .author-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .author-header h1 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .author-header h2 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: #0f172a;
+        }
+
+        /* Book Collection Grid */
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .book-link {
+            text-decoration: none;
+            color: inherit;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            height: 60%;
+        }
+
+        .book-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        .book-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #334155;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #94a3b8;
+        }
+
+        .back-nav {
+            margin-top: 3rem;
+        }
+
+        .btn-back {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="author-header">
+        <h1>Author Collection</h1>
+        <h2>{{ author.first_name }} {{ author.last_name }}</h2>
+    </header>
+
+    <ul class="book-grid">
+        {% for book in books %}
+        <li class="book-card">
+            <a href="{% url 'book_detail_fbv' book.id %}" class="book-link">
+                <span class="book-icon"></span>
+                <span class="book-title">{{ book.title }}</span>
+            </a>
+        </li>
+        {% empty %}
+        <div class="empty-state">
+            <p>This author hasn't added any books to the Booktech library yet.</p>
+        </div>
+        {% endfor %}
+    </ul>
+
+    <nav class="back-nav">
+        <a href="{% url 'author_list' %}" class="btn-back">← Back to All Authors</a>
+    </nav>
+
+</body>
+</html>

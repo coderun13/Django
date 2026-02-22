@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booktech | {{ book.title }}</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --bg: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .book-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 40px;
+            border-left: 8px solid var(--primary);
+        }
+
+        .category-tag {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            margin: 0 0 10px 0;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+
+        .author-name {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .meta-group {
+            display: flex;
+            gap: 40px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .meta-value {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .actions {
+            margin-top: 40px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-outline {
+            border: 1px solid #e2e8f0;
+            color: var(--text-muted);
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="book-card">
+            <span class="category-tag">Digital Library</span>
+            <h1>{{ book.title }}</h1>
+            <div class="author-name">by {{ book.author.first_name }} {{ book.author.last_name }}</div>
+
+            <div class="meta-group">
+                <div class="meta-item">
+                    <span class="meta-label">Published</span>
+                    <span class="meta-value">{{ book.publication_date }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Status</span>
+                    <span class="meta-value"> Available</span>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="{% url 'book_list' %}" class="btn btn-primary">Back to Library</a>
+                <a href="{% url 'author_list' %}" class="btn btn-outline">View Author Profile</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

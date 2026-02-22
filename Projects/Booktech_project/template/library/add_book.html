@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booktech | Add Book</title>
+    <style>
+        :root {
+            --primary-color: #4f46e5; /* Modern Indigo */
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --card-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .form-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #1f2937;
+            font-size: 1.75rem;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        /* Styling Django's {{ form.as_p }} */
+        form p {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #4b5563;
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 8px;
+            box-sizing: border-box; /* Crucial for padding */
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #4338ca;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .back-link {
+            text-align: center;
+            display: block;
+            margin-top: 20px;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-card">
+        <h1>Add a New Book</h1>
+        
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add to Library</button>
+        </form>
+
+        <a href="{% url 'book_list_fbv' %}" class="back_link">← Return to Book List</a>
+    </div>
+
+</body>
+</html>

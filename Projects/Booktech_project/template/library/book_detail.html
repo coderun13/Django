@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booktech | {{ book.title }}</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #4f46e5;
+            --bg: #f8fafc;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .book-card {
+            background: white;
+            width: 100%;
+            max-width: 700px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Top Banner */
+        .book-header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .book-header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            letter-spacing: -0.05em;
+        }
+
+        .author-badge {
+            display: inline-block;
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #cbd5e1;
+            font-size: 1.1rem;
+        }
+
+        /* Information Grid */
+        .book-content {
+            padding: 40px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .info-item {
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 12px;
+        }
+
+        .info-label {
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .footer-nav {
+            background: #f1f5f9;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-text {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-text:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <article class="book-card">
+        <header class="book-header">
+            <h1>{{ book.title }}</h1>
+            <div class="author-badge">
+                by {{ book.author.first_name }} {{ book.author.last_name }}
+            </div>
+        </header>
+
+        <div class="book-content">
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">ISBN Number</span>
+                    <span class="info-value">#{{ book.isbn }}</span>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-label">Release Date</span>
+                    <span class="info-value">{{ book.publication_date }}</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Publisher</span>
+                    <span class="info-value">{{ book.publisher }}</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Database ID</span>
+                    <span class="info-value">{{ book.id }}</span>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer-nav">
+            <a href="{% url 'book_list_fbv' %}" class="btn-text">← Back to Library</a>
+            <a href="{% url 'author_list' %}" class="btn-text">View All Authors</a>
+        </footer>
+    </article>
+
+</body>
+</html>
