@@ -1,0 +1,513 @@
+/* Custom Global Styles */
+body {
+    background-color: #f8f9fa; /* Light gray background */
+    font-family: 'Inter', sans-serif;
+    color: #334155;
+}
+
+.main-container {
+    min-height: 80vh;
+}
+
+/* Card Styling */
+.dashboard-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.card-header {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1.25rem;
+}
+
+/* Table Styling */
+.table thead th {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    font-weight: 600;
+    color: #64748b;
+    padding: 1rem;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    padding: 1rem;
+    font-size: 0.95rem;
+}
+
+/* Hover effect for table rows */
+.table-hover tbody tr:hover {
+    background-color: #f1f5f9;
+    transition: background-color 0.2s ease;
+}
+
+/* Status Cards (for your status.html) */
+.status-box {
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+}
+
+.status-box:hover {
+    transform: translateY(-3px);
+}
+
+/* Custom Colors & Typography */
+:root {
+    --primary-blue: #2563eb;
+    --bg-light: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --success-bg: #dcfce7;
+    --success-text: #166534;
+    --pending-bg: #fef9c3;
+    --pending-text: #854d0e;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Card Improvements */
+.card {
+    border-radius: 12px;
+    transition: transform 0.2s ease;
+}
+
+.card-title {
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+}
+
+/* Table Refinements */
+.table thead th {
+    border-top: none;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.75rem;
+}
+
+.table tbody td {
+    border-bottom: 1px solid #f1f5f9;
+    padding: 1rem 0.5rem;
+}
+
+/* Custom Status Badges */
+.badge-status {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Add logic for these in your Django template if needed */
+.status-delivered { background-color: var(--success-bg); color: var(--success-text); }
+.status-pending { background-color: var(--pending-bg); color: var(--pending-text); }
+.status-out { background-color: #e0f2fe; color: #075985; }
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-blue);
+    border: none;
+    font-weight: 500;
+}
+
+.btn-white {
+    background-color: white;
+    color: var(--text-main);
+    font-size: 0.875rem;
+}
+
+/* Pricing text color */
+.text-success {
+    color: #10b981 !important; /* A modern emerald green */
+}
+
+/* Category badge styling */
+.badge.bg-light.text-dark.border {
+    font-weight: 500;
+    padding: 0.4em 0.8em;
+    background-color: #f8fafc !important;
+    border-color: #e2e8f0 !important;
+}
+
+/* Smooth transitions for the action buttons */
+.btn-outline-secondary:hover {
+    background-color: #f1f5f9;
+    color: #334155;
+    border-color: transparent;
+}
+
+
+/* Profile Icon */
+.nav-profile-circle {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.nav-profile-group:hover .nav-profile-circle {
+    transform: scale(1.05);
+}
+
+.hover-white:hover {
+    color: white !important;
+}
+
+/* Stat Card Base */
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #cbd5e1; /* Default border */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+    font-size: 1.8rem;
+    margin-right: 1.25rem;
+    background: #f8fafc;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.stat-content h6 {
+    color: #64748b;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.stat-content h2 {
+    color: #1e293b;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+/* Specific Border Colors */
+.total-orders { border-left-color: #6366f1; }    /* Indigo */
+.pending-orders { border-left-color: #f59e0b; }  /* Amber */
+.out-delivery { border-left-color: #0ea5e9; }    /* Sky Blue */
+.delivered-orders { border-left-color: #10b981; } /* Emerald */
+
+/* Trend Badges */
+.trend-up {
+    font-size: 0.75rem;
+    background: #dcfce7;
+    color: #166534;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+/* Styling raw Django form elements */
+.order-form-container input, 
+.order-form-container select, 
+.order-form-container textarea {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #334155;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.order-form-container input:focus, 
+.order-form-container select:focus {
+    border-color: #38bdf8;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(56, 189, 248, 0.1);
+}
+
+.extra-small {
+    font-size: 0.75rem;
+}
+
+/* Make the card feel premium */
+.rounded-4 {
+    border-radius: 1rem !important;
+}
+/* Table Layout Tweaks */
+.table thead th {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border: none;
+}
+
+/* Status Badges */
+.badge-status {
+    padding: 0.4em 0.8em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 50rem;
+    text-transform: uppercase;
+}
+
+.status-delivered { background-color: #dcfce7; color: #166534; }
+.status-pending { background-color: #fef9c3; color: #854d0e; }
+.status-out { background-color: #e0f2fe; color: #075985; }
+
+/* Action Buttons */
+.btn-outline-warning { border-color: #f59e0b; color: #f59e0b; }
+.btn-outline-warning:hover { background-color: #f59e0b; color: #fff; }
+
+.btn-outline-danger { border-color: #ef4444; color: #ef4444; }
+.btn-outline-danger:hover { background-color: #ef4444; color: #fff; }
+
+/* Styling for Customer and Order forms */
+.customer-form-wrapper input, 
+.customer-form-wrapper select, 
+.customer-form-wrapper textarea {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #334155;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.customer-form-wrapper input:focus, 
+.customer-form-wrapper select:focus {
+    border-color: #38bdf8;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(56, 189, 248, 0.1);
+}
+
+.extra-small {
+    font-size: 0.75rem;
+}
+
+/* Styling for all e-mall forms */
+.update-form-wrapper input, 
+.update-form-wrapper select, 
+.update-form-wrapper textarea {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #334155;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.update-form-wrapper input:focus, 
+.update-form-wrapper select:focus {
+    border-color: #38bdf8;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(56, 189, 248, 0.1);
+}
+
+/* Radio Pill Styling */
+.btn-check:checked + .btn-outline-primary {
+    background-color: #0ea5e9; /* Sky blue to match your dashboard */
+    border-color: #0ea5e9;
+    color: white;
+}
+
+.btn-outline-primary {
+    color: #64748b; /* Slate text for unselected */
+    border-color: #e2e8f0; /* Soft border */
+}
+
+.btn-outline-primary:hover {
+    background-color: #f8fafc;
+    border-color: #0ea5e9;
+    color: #0ea5e9;
+}
+
+/* Styling for both Radio and Checkbox Pills */
+.tag-selector .btn-check + .btn-outline-primary {
+    color: #0d6efd; /* Your brand blue */
+    border-color: #0d6efd;
+    background-color: transparent;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Selected State */
+.tag-selector .btn-check:checked + .btn-outline-primary {
+    background-color: #0d6efd; /* Solid blue when selected */
+    color: #ffffff;
+    border-color: #0d6efd;
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
+}
+
+/* Hover State */
+.tag-selector .btn-outline-primary:hover {
+    background-color: #f0f7ff;
+    border-color: #0d6efd;
+}
+
+/* Ensure the standard Django multi-select list is hidden if it accidentally renders */
+select[multiple] {
+    display: none !important;
+}
+
+/* Badge Status Styling */
+.badge-status {
+    padding: 0.4em 0.8em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 50rem;
+    text-transform: uppercase;
+}
+
+.status-delivered { background-color: #dcfce7; color: #166534; }
+.status-pending { background-color: #fef9c3; color: #854d0e; }
+.status-out { background-color: #e0f2fe; color: #075985; }
+
+/* Table Header Styling */
+.table thead th {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border: none;
+}
+
+/* Status Badge Styling */
+.badge-status {
+    padding: 0.4em 0.8em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 50rem;
+    text-transform: uppercase;
+}
+
+/* Status Colors */
+.status-delivered { background-color: #dcfce7; color: #166534; }
+.status-pending { background-color: #fef9c3; color: #854d0e; }
+.status-outfordelivery { background-color: #e0f2fe; color: #075985; }
+
+/* Table Row Hover */
+.table-hover tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* Responsive Card Header */
+@media (max-width: 768px) {
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    .badge {
+        margin-top: 10px;
+    }
+}
+
+/* Hero Visual Polish */
+.mockup-window {
+    transform: perspective(1000px) rotateY(-5deg);
+    transition: transform 0.4s ease;
+}
+
+.mockup-window:hover {
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+.dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.red { background-color: #ff5f56; }
+.yellow { background-color: #ffbd2e; }
+.green { background-color: #27c93f; }
+
+/* Floating Element */
+.floating-card {
+    bottom: 10%;
+    left: -20px;
+    z-index: 10;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.bg-success-soft {
+    background-color: #dcfce7;
+}
+
+/* responsive border fixes */
+@media (min-width: 768px) {
+    .border-end-md { border-right: 1px solid #dee2e6 !important; }
+}
+
+/* Professional Color Accents */
+.bg-info-soft { background-color: #e0f2fe; }
+.text-info { color: #0ea5e9 !important; }
+
+.filter-grayscale {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.filter-grayscale:hover {
+    filter: grayscale(0%);
+}
+
+.tracking-widest {
+    letter-spacing: 0.2em;
+}
+
+.extra-small {
+    font-size: 0.7rem;
+}
+
+/* Steps Hover Effect */
+.border-secondary {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s ease;
+}
+
+.border-secondary:hover {
+    border-color: #38bdf8 !important;
+    transform: translateY(-5px);
+}

@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
+                <div class="card-body p-5 text-center">
+                    <div class="mb-4">
+                        <i class="bi bi-exclamation-triangle-fill text-danger display-4"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Delete Tag?</h4>
+                    <p class="text-muted mb-4">Are you sure you want to remove <strong>"{{ tag.name }}"</strong>? This action will unbind this tag from all linked products.</p>
+                    
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger fw-bold py-2 rounded-1 shadow-sm">YES, DELETE TAG</button>
+                            <a href="{% url 'tag_list' %}" class="btn btn-light py-2 border rounded-1 fw-bold">NO, GO BACK</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

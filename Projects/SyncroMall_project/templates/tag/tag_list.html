@@ -1,0 +1,105 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid py-4 px-lg-5">
+    <div class="d-flex justify-content-between align-items-end mb-4 border-bottom pb-3">
+        <div>
+            <h4 class="fw-bold text-dark mb-1">Tag Management</h4>
+            <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-primary rounded-1 small">{{ tags|length }} Active Attributes</span>
+                <p class="text-secondary small mb-0">| Organize your inventory with custom tags.</p>
+            </div>
+        </div>
+        <div class="d-flex gap-2">
+                <a href="{% url 'upload_tag_csv' %}" class="btn btn-outline-primary fw-bold px-4 rounded-1 shadow-sm">
+                    <i class="bi bi-file-earmark-arrow-up me-2"></i>UPLOAD CSV
+                </a>
+            <a href="{% url 'createtag' %}" class="btn btn-primary fw-bold px-4 rounded-1 shadow-sm">
+                <i class="bi bi-plus-lg me-2"></i>CREATE NEW TAG
+            </a>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-1">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
+                        <tr class="text-muted extra-small text-uppercase">
+                            <th class="ps-4">Tag Name</th>
+                            <!-- <th>Slug</th> -->
+                            <th class="text-end pe-4">Manage</th>
+                        </tr>
+                    </thead>
+<tbody>
+    {% for tag in tags %}
+    <tr>
+        <td class="ps-4">
+            <span class="badge bg-primary-subtle text-primary border-0 rounded-1 px-3 py-2 small fw-bold">
+                <i class="bi bi-tag-fill me-1"></i> {{ tag.name|upper }}
+            </span>
+        </td>
+        <!-- <td class="text-secondary small fw-medium">#{{ tag.name|lower|cut:" " }}</td> -->
+        <td class="text-end pe-4">
+            <div class="d-flex justify-content-end gap-2">
+                <a href="{% url 'update_tag' tag.id %}" class="btn btn-sm btn-outline-primary fw-bold px-3 rounded-1 extra-small">EDIT</a>
+                <a href="{% url 'delete_tag' tag.id %}" class="btn btn-sm btn-outline-danger fw-bold px-3 rounded-1 extra-small">DELETE</a>
+            </div>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3" class="text-center py-5 text-muted">No tags found.</td>
+    </tr>
+    {% endfor %}
+</tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<style>
+    /* Global E-MALL Flipkart Styling */
+    .tracking-wide { letter-spacing: 0.05em; }
+    .extra-small { font-size: 0.7rem; }
+    .rounded-1 { border-radius: 4px !important; }
+
+    /* Flipkart Brand Colors */
+    .btn-primary {
+        background-color: #2874f0 !important;
+        border: none;
+    }
+
+    .btn-outline-primary {
+        color: #2874f0;
+        border-color: #dbdbdb;
+        background-color: white;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #2874f0;
+        color: white;
+        border-color: #2874f0;
+    }
+
+    .btn-outline-danger {
+        color: #fb641b;
+        border-color: #dbdbdb;
+    }
+
+    .btn-outline-danger:hover {
+        background-color: #fb641b;
+        color: white;
+        border-color: #fb641b;
+    }
+
+    /* Tag Specific Styling */
+    .bg-primary-subtle { background-color: #e7f0ff !important; }
+
+    .table-hover tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+</style>

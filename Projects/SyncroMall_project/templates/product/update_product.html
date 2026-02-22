@@ -1,0 +1,131 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card border-0 shadow-sm rounded-1">
+                <div class="bg-primary p-1 rounded-top-1"></div>
+                
+                <div class="card-body p-4 p-lg-5">
+                    <div class="mb-4 text-center">
+                        <h4 class="fw-bold text-dark mb-1">Update Product</h4>
+                        <p class="text-secondary small">Modify existing inventory details for <strong>e-mall</strong>.</p>
+                    </div>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="product-form-wrapper">
+        {% for field in form %}
+            {% if field.name != 'tags' %}
+                <div class="mb-4">
+                    <label class="form-label fw-bold text-muted small text-uppercase tracking-wide">
+                        {{ field.label }}
+                    </label>
+                    
+                    {% if field.name == 'pic' and field.value %}
+                        <div class="mb-2">
+                            <img src="{{ field.value.url }}" class="rounded border shadow-sm" style="height: 80px; width: 80px; object-fit: contain;">
+                            <p class="extra-small text-muted mt-1">Current Image</p>
+                        </div>
+                    {% endif %}
+
+                    <div class="input-group border-bottom pb-1">
+                        {{ field }}
+                    </div>
+                    
+                    {% if field.errors %}
+                        <div class="text-danger extra-small mt-1">
+                            <i class="bi bi-exclamation-circle me-1"></i>{{ field.errors|first }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <div class="tag-selector mb-4">
+            <label class="form-label d-block fw-bold text-muted small text-uppercase tracking-wide">Update Product Tags</label>
+            <div class="d-flex flex-wrap gap-2 mt-2">
+                {% for pk, choice in form.fields.tags.choices %}
+                    <input type="checkbox" class="btn-check" name="tags" id="tag{{ pk }}" value="{{ pk }}" 
+                        {% if pk in form.tags.value %}checked{% endif %}>
+                    <label class="btn btn-outline-primary rounded-pill px-3 py-1 extra-small fw-bold" for="tag{{ pk }}">
+                        {{ choice }}
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="d-grid gap-2 mt-5">
+        <button type="submit" class="btn btn-primary py-3 fw-bold rounded-1 shadow-sm text-uppercase tracking-wide">
+            <i class="bi bi-check-circle-fill me-2"></i>SAVE CHANGES
+        </button>
+        <a href="{% url 'product' %}" class="btn btn-white py-2 text-primary fw-bold small text-decoration-none text-center">
+            CANCEL
+        </a>
+    </div>
+</form>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <p class="text-muted extra-small uppercase fw-bold tracking-widest">
+                    <i class="bi bi-pencil-square me-1"></i> Audit Log: Product details being modified by Admin
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Flipkart-Style Input Overrides */
+    .form-control, input, select, textarea {
+        border: none !important;
+        border-radius: 0 !important;
+        padding-left: 0 !important;
+        font-weight: 500;
+        color: #212121;
+        background-color: transparent !important;
+    }
+    
+    .form-control:focus, input:focus {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    /* Custom spacing and typography */
+    .tracking-wide { letter-spacing: 0.05em; }
+    .extra-small { font-size: 0.75rem; }
+    
+    /* High-Action Button (Flipkart Orange) */
+    .btn-primary {
+        background-color: #fb641b !important;
+        border: none;
+        letter-spacing: 0.05em;
+    }
+
+    .btn-primary:hover {
+        background-color: #ff9f00 !important;
+        transform: translateY(-1px);
+    }
+
+    /* Flipkart Blue accents */
+    .text-primary, .btn-outline-primary {
+        color: #2874f0 !important;
+    }
+    
+    .btn-outline-primary {
+        border-color: #2874f0 !important;
+    }
+    
+    .btn-check:checked + .btn-outline-primary {
+        background-color: #2874f0 !important;
+        color: white !important;
+    }
+
+    .rounded-1 { border-radius: 4px !important; }
+</style>
+{% endblock %}

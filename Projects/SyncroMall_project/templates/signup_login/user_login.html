@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | SyncroMall AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root { --fk-blue: #2874f0; --fk-orange: #fb641b; }
+        body { background-color: #f1f3f6; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* Layout Tweaks */
+        .login-container { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 0; }
+        .card-auth { border: none; border-radius: 8px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); width: 100%; max-width: 850px; }
+        
+        /* Side Panels */
+        .auth-info-side { background-color: var(--fk-blue); color: white; padding: 45px; display: flex; flex-direction: column; justify-content: center; }
+        .auth-form-side { background: white; padding: 45px; }
+        
+        /* Forms */
+        .form-control { border-radius: 2px; border: 1px solid #e0e0e0; padding: 12px; font-size: 0.9rem; }
+        .form-control:focus { box-shadow: none; border-color: var(--fk-blue); background-color: #f8fbff; }
+        
+        .btn-login { background-color: var(--fk-blue); color: white; border: none; font-weight: 700; border-radius: 2px; padding: 12px; transition: 0.3s; }
+        .btn-login:hover { background-color: #1a5abd; color: white; }
+        
+        .extra-small { font-size: 0.75rem; }
+        .text-blue { color: var(--fk-blue); }
+    </style>
+</head>
+<body>
+
+    {% include 'auth_nav.html' %}
+
+    <div class="login-container">
+        <div class="container">
+            <div class="card card-auth mx-auto">
+                <div class="row g-0">
+                    
+                    <div class="col-lg-5 auth-info-side d-none d-lg-flex">
+                        <h2 class="fw-bold mb-4">Welcome Back</h2>
+                        <p class="opacity-75 mb-4">Log in to access your personalized dashboard and AI-driven business insights.</p>
+                        
+                        <div class="mt-auto">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <i class="bi bi-shield-check text-warning"></i>
+                                <span class="extra-small">Secure Partner Portal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7 auth-form-side">
+                        <div class="mb-4 text-center text-lg-start">
+                            <h4 class="fw-bold text-dark mb-1">Account Login</h4>
+                            <p class="text-muted small">Enter your credentials to continue to SyncroMall.</p>
+                        </div>
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-danger small py-2 rounded-1 border-0 mb-3">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-secondary">Email Address</label>
+                                <input type="email" name="username" class="form-control" placeholder="name@example.com" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <label class="form-label small fw-bold text-secondary">Password</label>
+                                    <a href="#" class="extra-small text-decoration-none fw-bold text-blue">Forgot?</a>
+                                </div>
+                                <input type="password" name="password" class="form-control" placeholder="********" required>
+                            </div>
+
+                            <div class="mb-4 form-check">
+                                <input type="checkbox" class="form-check-input" id="remember">
+                                <label class="form-check-label extra-small text-muted" for="remember">Keep me logged in</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-login w-100 shadow-sm">LOG IN</button>
+                        </form>
+
+                        <div class="text-center mt-4 pt-3 border-top">
+                            <p class="small text-muted mb-1">Business Owner? 
+                                <a href="{% url 'seller_signup' %}" class="text-blue fw-bold text-decoration-none">Register as Seller</a>
+                            </p>
+                            <p class="small text-muted">Customer? 
+                                <a href="{% url 'buyer_signup' %}" class="text-blue fw-bold text-decoration-none">Create Account</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #2874f0 !important; padding: 12px 0;">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center fw-bold" href="{% url 'landing_page' %}" style="letter-spacing: -0.5px;">
+            <i class="bi bi-cpu-fill me-2 text-warning"></i>SyncroMall
+        </a>
+
+        <div class="ms-auto d-flex align-items-center gap-3">
+            <span class="d-none d-sm-inline text-white-50 extra-small">Secure Partner Portal</span>
+            <a href="{% url 'landing_page' %}" class="btn btn-outline-light btn-sm px-3 rounded-1 fw-bold border-0">
+                <i class="bi bi-house-door me-1"></i> HOME
+            </a>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .extra-small { font-size: 0.75rem; }
+    .navbar-brand { font-size: 1.25rem; }
+    /* Subtle hover effect for the home button */
+    .btn-outline-light:hover { background-color: rgba(255, 255, 255, 0.1); color: #fff; }
+</style>

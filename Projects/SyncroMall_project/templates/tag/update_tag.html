@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'tag_list' %}" class="text-decoration-none">Attributes</a></li>
+                    <li class="breadcrumb-item active">Update Tag</li>
+                </ol>
+            </nav>
+
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <h5 class="fw-bold mb-0 text-dark">Edit Tag: <span class="text-primary">{{ tag.name }}</span></h5>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold text-secondary">Tag Name</label>
+                            <input type="text" name="name" value="{{ tag.name }}" class="form-control rounded-1 py-2" required>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary px-4 fw-bold rounded-1">Update Changes</button>
+                            <a href="{% url 'tag_list' %}" class="btn btn-outline-secondary px-4 rounded-1">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid bg-white py-4 px-lg-5">
+    <nav aria-label="breadcrumb" class="mb-3 small">
+        <ol class="breadcrumb bg-transparent p-0">
+            <li class="breadcrumb-item"><a href="{% url 'product' %}" class="text-muted text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item"><a href="#" class="text-muted text-decoration-none">{{ product.category }}</a></li>
+            <li class="breadcrumb-item active text-dark fw-bold" aria-current="page">{{ product.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="row g-4">
+        <div class="col-lg-5">
+            <div class="sticky-top" style="top: 80px; z-index: 1;">
+                <div class="border rounded-1 p-3 text-center bg-white mb-3">
+                    {% if product.pic %}
+                        <img src="{{ product.pic.url }}" alt="{{ product.name }}" class="img-fluid" style="max-height: 450px; object-fit: contain;">
+                    {% else %}
+                        <div class="bg-light d-flex align-items-center justify-content-center" style="height: 400px;">
+                            <i class="bi bi-image text-muted display-1"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="row g-2">
+                    <div class="col-6">
+                        <a href="{% url 'update_product' product.id %}" class="btn btn-warning w-100 py-3 fw-bold text-white rounded-1 shadow-sm">
+                            <i class="bi bi-pencil-square me-2"></i>EDIT PRODUCT
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="{% url 'delete_product' product.id %}" class="btn btn-danger w-100 py-3 fw-bold rounded-1 shadow-sm">
+                            <i class="bi bi-trash3 me-2"></i>DELETE ITEM
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="ps-lg-3">
+                <h1 class="h4 fw-normal text-dark mb-1">{{ product.name }}</h1>
+
+                <div class="mb-3">
+                    <span class="h2 fw-bold text-dark">₹{{ product.price }}</span>
+                    <span class="text-muted text-decoration-line-through ms-2 small">₹{{ product.price|add:500 }}</span>
+                    <span class="text-success fw-bold ms-2 small">Special Price</span>
+                </div>
+
+                <div class="mb-4">
+                    <h6 class="fw-bold text-dark small">Available offers</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="small mb-1"><i class="bi bi-tag-fill text-success me-2"></i><b>Bank Offer</b> 10% off on SBI Credit Card, up to ₹1,500. <a href="#" class="text-primary text-decoration-none fw-bold">T&C</a></li>
+                        <li class="small mb-1"><i class="bi bi-tag-fill text-success me-2"></i><b>Bank Offer</b> 5% Cashback on Flipkart Axis Bank Card. <a href="#" class="text-primary text-decoration-none fw-bold">T&C</a></li>
+                        <li class="small mb-1"><i class="bi bi-tag-fill text-success me-2"></i><b>Partner Offer</b> Sign up for E-MALL Pay Later and get ₹500 off.</li>
+                    </ul>
+                </div>
+
+                <hr class="text-muted opacity-25">
+
+                <div class="row mb-4">
+                    <div class="col-3 text-muted small fw-bold">Description</div>
+                    <div class="col-9 small">{{ product.description|default:"Great product from our premium collection." }}</div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-3 text-muted small fw-bold">Attributes</div>
+                    <div class="col-9">
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for tag in product.tags.all %}
+                                <span class="badge bg-light text-dark border-0 rounded-1 px-3 py-2 small fw-normal">
+                                    {{ tag.name }}
+                                </span>
+                            {% empty %}
+                                <span class="text-muted small">No tags available</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center mb-4">
+                    <div class="col-3 text-muted small fw-bold">Delivery</div>
+                    <div class="col-9">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                            <input type="text" class="form-control form-control-sm border-0 border-bottom rounded-0 w-25" placeholder="Enter Pincode">
+                            <span class="text-primary fw-bold small ms-3 cursor-pointer">Check</span>
+                        </div>
+                        <p class="extra-small text-muted mt-1 mb-0">Delivery by 12 Feb, Thursday | <span class="text-success">Free</span></p>
+                    </div>
+                </div>
+
+                <hr class="text-muted opacity-25">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

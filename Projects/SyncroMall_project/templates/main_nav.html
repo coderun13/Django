@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <i class="bi bi-cpu-fill me-2 text-warning"></i>SyncroMall
+        </a>
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#landingNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="landingNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link px-3" href="#features">Features</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#pricing">Pricing</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="{% url 'product' %}">Products</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="{% url 'seller_signup' %}">Become a Seller</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#faq">FAQs</a></li>
+            </ul>
+            <div class="d-flex align-items-center gap-3">
+                <a href="{% url 'login' %}" class="text-white text-decoration-none small fw-bold">Login</a>
+                <a href="{% url 'buyer_signup' %}" class="btn btn-signup btn-sm px-4 rounded-1 shadow-sm">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .navbar-custom { background-color: var(--fk-blue); padding: 10px 0; }
+    .navbar-brand { font-weight: 800; letter-spacing: -0.5px; }
+    .nav-link { font-weight: 500; font-size: 0.9rem; transition: 0.3s; }
+    .nav-link:hover { opacity: 0.8; }
+    .btn-signup { background-color: var(--fk-orange); color: white; border: none; font-weight: 700; }
+    .btn-signup:hover { background-color: #ff9f00; color: white; }
+</style>

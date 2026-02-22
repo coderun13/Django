@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm rounded-1">
+                <div class="card-body p-5 text-center">
+                    <i class="bi bi-cloud-arrow-up display-1 text-primary opacity-25 mb-4"></i>
+                    <h4 class="fw-bold text-dark mb-3">Bulk Tag Import</h4>
+                    <p class="text-secondary small mb-4">Upload a .csv file to add multiple tags to your inventory at once.</p>
+
+                    <div class="alert alert-light border-0 rounded-1 mb-4 py-2 d-flex align-items-center justify-content-between">
+                        <span class="extra-small text-muted fw-bold text-uppercase">Need a template?</span>
+                        <a href="{% url 'download_tag_template' %}" class="btn btn-sm btn-link text-primary fw-bold extra-small text-decoration-none p-0">
+                            <i class="bi bi-filetype-csv me-1"></i>DOWNLOAD SAMPLE
+                        </a>
+                    </div>
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <input type="file" name="file" class="form-control rounded-1 extra-small" accept=".csv" required>
+                            <div class="form-text extra-small text-start">File must contain a 'name' column.</div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary fw-bold py-2 rounded-1 tracking-wide">
+                                START IMPORT
+                            </button>
+                            <a href="{% url 'tag_list' %}" class="btn btn-white text-muted small fw-bold">CANCEL</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .extra-small { font-size: 0.75rem; }
+    .tracking-wide { letter-spacing: 0.05em; }
+    .btn-primary { background-color: #2874f0 !important; border: none; }
+</style>
+{% endblock %}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncroMall | Business Synchronized</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root { --fk-blue: #2874f0; --fk-orange: #fb641b; }
+        body { font-family: 'Inter', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        .hero-section { background: linear-gradient(180deg, #f0f5ff 0%, #ffffff 100%); }
+        .tracking-tight { letter-spacing: -0.02em; }
+        .extra-small { font-size: 0.75rem; }
+        .bg-success-soft { background-color: #e6f4ea; }
+        .bg-info-soft { background-color: #e0f2fe; }
+        .filter-grayscale { filter: grayscale(100%); transition: 0.3s; }
+        .filter-grayscale:hover { filter: grayscale(0%); }
+        .mockup-window { border: 1px solid #e5e7eb; }
+        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; }
+        .dot.red { background-color: #ff5f56; }
+        .dot.yellow { background-color: #ffbd2e; }
+        .dot.green { background-color: #27c93f; }
+        .floating-card { bottom: 20px; right: -20px; min-width: 180px; z-index: 10; }
+    </style>
+</head>
+<body>
+
+{% include 'main_nav.html' %}
+
+
+<section class="hero-section py-5 mb-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="display-4 fw-bold tracking-tight text-dark mb-3">
+                    Manage Your Business <br>
+                    <span class="text-primary">Without the Chaos.</span>
+                </h1>
+                <p class="lead text-secondary mb-5">
+                    The all-in-one management suite for tracking customers, real-time inventory, and automated order fulfillment. Built for growth, designed for clarity.
+                </p>
+                <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3">
+                    <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill shadow-sm fw-bold">
+                        Enter Dashboard
+                    </a>
+                    <a href="{% url 'product' %}" class="btn btn-white btn-lg px-5 py-3 border rounded-pill shadow-sm fw-bold">
+                        View Inventory
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="hero-visual-container position-relative">
+                    <div class="mockup-window shadow-lg rounded-4 overflow-hidden border">
+                        <div class="mockup-header bg-light border-bottom p-2 d-flex gap-1">
+                            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                        </div>
+                        <div class="mockup-body bg-white p-2">
+                             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" 
+                                  alt="Dashboard Preview" class="img-fluid rounded-2 border">
+                        </div>
+                    </div>
+                    <div class="floating-card bg-white shadow rounded-3 p-3 position-absolute d-none d-md-block">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="bg-success-soft rounded-circle p-2">
+                                <i class="bi bi-check2-circle text-success"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold small">Order Delivered</div>
+                                <div class="text-muted extra-small">Just now</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container mb-5">
+    <div class="row text-center g-4">
+        <div class="col-md-4">
+            <div class="p-4 border-end-md border-light">
+                <h2 class="fw-bold mb-0 text-dark">{{ total_orders|default:"0" }}</h2>
+                <p class="text-secondary small text-uppercase fw-bold">Orders Processed</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 border-end-md border-light">
+                <h2 class="fw-bold mb-0 text-dark">{{ total_customers|default:"0" }}</h2>
+                <p class="text-secondary small text-uppercase fw-bold">Active Clients</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4">
+                <h2 class="fw-bold mb-0 text-success">99.9%</h2>
+                <p class="text-secondary small text-uppercase fw-bold">Fulfillment Rate</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="features" class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 order-lg-2 text-center text-lg-start">
+                <div class="badge bg-info-soft text-info mb-3 px-3 py-2 rounded-pill fw-bold">Advanced Reporting</div>
+                <h2 class="fw-bold text-dark mb-4">Turn Your Data Into <br><span class="text-info">Growth Strategies.</span></h2>
+                <p class="text-secondary mb-4">
+                    Stop guessing and start growing. Our integrated analytics engine tracks your top-performing categories, customer lifetime value, and seasonal trends automatically.
+                </p>
+                <ul class="list-unstyled mb-5">
+                    <li class="mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill text-info"></i>
+                        <span>Automated Revenue Tracking</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill text-info"></i>
+                        <span>Customer Segmentation & LTV Insights</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill text-info"></i>
+                        <span>Inventory Turnover Analysis</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-4 bg-white shadow-lg rounded-4 border">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070" 
+                         alt="Analytics Dashboard" class="img-fluid rounded-3">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 border-top border-bottom bg-white">
+    <div class="container text-center">
+        <p class="text-uppercase small fw-bold text-muted mb-4 tracking-widest">Powering ambitious businesses across India</p>
+        <div class="row align-items-center justify-content-center g-5 opacity-50 filter-grayscale">
+            <div class="col-4 col-md-2"><h5>BOOKTECH</h5></div>
+            <div class="col-4 col-md-2"><h5>LOGIX</h5></div>
+            <div class="col-4 col-md-2"><h5>E-FLOW</h5></div>
+            <div class="col-4 col-md-2"><h5>STORE-AI</h5></div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-dark text-white rounded-5 mx-2 my-5">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Your Business, Synchronized.</h2>
+            <p class="text-white-50">Three steps to total operational control.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="h-100 p-4 border border-secondary rounded-4">
+                    <div class="display-6 fw-bold text-primary mb-3">01</div>
+                    <h5 class="fw-bold">Onboard & Catalog</h5>
+                    <p class="small text-white-50">Import your existing customer base and product inventory with our smart ETL pipelines.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="h-100 p-4 border border-secondary rounded-4">
+                    <div class="display-6 fw-bold text-primary mb-3">02</div>
+                    <h5 class="fw-bold">Fulfill with Precision</h5>
+                    <p class="small text-white-50">Manage orders from pending to delivery with a unified logistics interface.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="h-100 p-4 border border-secondary rounded-4">
+                    <div class="display-6 fw-bold text-primary mb-3">03</div>
+                    <h5 class="fw-bold">Scale with Confidence</h5>
+                    <p class="small text-white-50">Use AI-driven insights to identify growth opportunities and optimize stock levels.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="pricing" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-dark">Flexible Plans for Every Scale</h2>
+            <p class="text-secondary">Start free, then scale as your inventory grows.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-5 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="card-body">
+                        <h6 class="text-uppercase fw-bold text-primary small mb-3">Starter</h6>
+                        <h2 class="fw-bold mb-4">₹0 <span class="text-secondary fs-6 fw-normal">/mo</span></h2>
+                        <ul class="list-unstyled mb-5">
+                            <li class="mb-3 d-flex align-items-center gap-2 small"><i class="bi bi-check text-success"></i> Up to 50 Products</li>
+                            <li class="mb-3 d-flex align-items-center gap-2 small"><i class="bi bi-check text-success"></i> Basic Order Tracking</li>
+                            <li class="mb-3 d-flex align-items-center gap-2 small text-muted"><i class="bi bi-x"></i> Advanced Analytics</li>
+                        </ul>
+                        <a href="{% url 'create_customer' %}" class="btn btn-outline-primary w-100 rounded-pill fw-bold">Get Started</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-lg-4">
+                <div class="card h-100 border-primary shadow p-4 position-relative overflow-hidden">
+                    <div class="bg-primary text-white text-center py-1 small position-absolute top-0 start-0 end-0 fw-bold">MOST POPULAR</div>
+                    <div class="card-body mt-2">
+                        <h6 class="text-uppercase fw-bold text-primary small mb-3">Professional</h6>
+                        <h2 class="fw-bold mb-4">₹2,499 <span class="text-secondary fs-6 fw-normal">/mo</span></h2>
+                        <ul class="list-unstyled mb-5">
+                            <li class="mb-3 d-flex align-items-center gap-2 small"><i class="bi bi-check text-success"></i> Unlimited Products</li>
+                            <li class="mb-3 d-flex align-items-center gap-2 small"><i class="bi bi-check text-success"></i> AI Insights & ETL Pipelines</li>
+                            <li class="mb-3 d-flex align-items-center gap-2 small"><i class="bi bi-check text-success"></i> PDF Invoice Generation</li>
+                        </ul>
+                        <button class="btn btn-primary w-100 rounded-pill fw-bold shadow-sm">Upgrade to Pro</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light rounded-5 mx-2 mb-5" id="faq">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <h2 class="fw-bold text-dark mb-4">Common Questions</h2>
+                <p class="text-secondary small">Need more help? <br><a href="#" class="text-primary fw-bold text-decoration-none">Contact our support team</a></p>
+            </div>
+            <div class="col-lg-8">
+                <div class="accordion accordion-flush bg-transparent" id="faqAccordion">
+                    <div class="accordion-item bg-transparent border-bottom py-2">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent fw-bold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                Can I migrate my data from Excel?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-secondary small">
+                                Yes! SyncroMall supports CSV imports through our automated ETL pipelines, allowing you to onboard your entire product catalog in minutes.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item bg-transparent border-bottom py-2">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent fw-bold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Is my customer data secure?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-secondary small">
+                                Absolutely. We use industry-standard encryption and Django's robust security framework to ensure all data is protected.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+{% include 'footer.html' %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

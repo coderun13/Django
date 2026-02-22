@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-5">
+            <div class="card border-0 shadow-sm rounded-1">
+                <div class="bg-danger p-1 rounded-top-1" style="background-color: #fb641b !important;"></div>
+                
+                <div class="card-body p-4 p-lg-5 text-center">
+                    <div class="mb-4">
+                        <i class="bi bi-exclamation-triangle-fill text-danger display-4" style="color: #fb641b !important;"></i>
+                    </div>
+
+                    <div class="mb-4">
+                        <h4 class="fw-bold text-dark mb-2">Delete Customer</h4>
+                        <p class="text-secondary small">
+                            Are you sure you want to permanently remove <br>
+                            <strong class="text-dark fs-6">{{ customer.name }}</strong>?
+                        </p>
+                        <p class="extra-small text-muted mt-2 border p-2 bg-light rounded-1">
+                            <i class="bi bi-info-circle me-1"></i> This action cannot be undone and will remove all associated profile data.
+                        </p>
+                    </div>
+
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-danger py-3 fw-bold rounded-1 shadow-sm text-uppercase tracking-wide">
+                                <i class="bi bi-trash3-fill me-2"></i>Yes, Remove Customer
+                            </button>
+                            <a href="{% url 'customer_list' %}" class="btn btn-white py-2 text-primary fw-bold small text-decoration-none mt-2">
+                                CANCEL AND GO BACK
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Styling to match your E-MALL Flipkart-style updates */
+    .tracking-wide { letter-spacing: 0.05em; }
+    .extra-small { font-size: 0.75rem; }
+    .rounded-1 { border-radius: 4px !important; }
+    
+    .btn-danger {
+        background-color: #fb641b !important; /* Flipkart High-Action Orange/Red */
+        border: none;
+    }
+
+    .btn-danger:hover {
+        background-color: #e65100 !important;
+        transform: translateY(-1px);
+    }
+
+    .text-primary {
+        color: #2874f0 !important; /* Flipkart Brand Blue */
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,75 @@
+<footer class="main-footer bg-dark-blue pt-5 pb-3 mt-auto">
+  <div class="container-fluid px-lg-5">
+    <div class="row g-4 mb-4">
+
+      <div class="col-lg-4 col-md-6 border-end-secondary">
+        <h5 class="fw-bold text-white mb-3">
+            <i class="bi bi-cpu-fill text-warning me-2"></i>SYNCROMALL
+        </h5>
+        <p class="text-footer-muted small pe-lg-5">
+          A comprehensive management suite designed for Indian sellers and global buyers. 
+          Built with Django and AI-driven ETL pipelines to streamline operations from 
+          Asansol to the world.
+        </p>
+        <div class="d-flex gap-3 fs-5 mt-3">
+            <a href="#" class="text-white opacity-75 hover-warning"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white opacity-75 hover-warning"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="text-white opacity-75 hover-warning"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/yourusername" class="text-white opacity-75 hover-warning"><i class="bi bi-github"></i></a>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-6 col-6">
+        <h6 class="text-uppercase fw-bold text-footer-header extra-small mb-3">Management</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="{% url 'dashboard' %}" class="footer-link">Admin Dash</a></li>
+          <li class="mb-2"><a href="{% url 'product' %}" class="footer-link">Inventory</a></li>
+          <li class="mb-2"><a href="{% url 'tag_list' %}" class="footer-link">Attributes/Tags</a></li>
+          <li class="mb-2"><a href="{% url 'customer_list' %}" class="footer-link">Customer Base</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-2 col-md-6 col-6 border-end-secondary">
+        <h6 class="text-uppercase fw-bold text-footer-header extra-small mb-3">Logistics</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="{% url 'pending_orders' %}" class="footer-link">Incoming Orders</a></li>
+          <li class="mb-2"><a href="{% url 'out_for_delivery' %}" class="footer-link">In Transit</a></li>
+          <li class="mb-2"><a href="{% url 'delivered_orders' %}" class="footer-link">Fulfillment History</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-4 col-md-6 ps-lg-5">
+        <h6 class="text-uppercase fw-bold text-footer-header extra-small mb-3">Registered Office:</h6>
+        <p class="small text-footer-muted mb-1">
+          <span class="text-white fw-bold">Snehal Singh</span><br>
+          BTech AI & ML Specialist<br>
+          Asansol, West Bengal, 713304<br>
+          India
+        </p>
+        <p class="small text-white fw-bold mt-3 mb-0">Technical Support:</p>
+        <a href="mailto:snehal@example.com" class="text-warning text-decoration-none small fw-bold">support@syncromall.ai</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom border-top border-secondary-subtle mt-4 pt-3">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+          <span class="small text-footer-muted">© 2026 SyncroMall. Engineered by <strong>Snehal Singh</strong>.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+    /* Add these to your main CSS file or a <style> block */
+    .bg-dark-blue { background-color: #172337; } /* Flipkart's footer dark blue */
+    .text-footer-muted { color: #878787; }
+    .text-footer-header { color: #878787; font-size: 0.75rem; }
+    .footer-link { color: #fff; text-decoration: none; font-size: 0.85rem; transition: 0.2s; }
+    .footer-link:hover { color: #2874f0; }
+    .hover-warning:hover { color: #ffc107 !important; }
+    .border-end-secondary { border-right: 1px solid rgba(255,255,255,0.1); }
+    @media (max-width: 991px) { .border-end-secondary { border-right: none; } }
+</style>

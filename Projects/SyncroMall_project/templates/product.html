@@ -1,0 +1,166 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid py-4 px-lg-5">
+    <div class="d-flex justify-content-between align-items-end mb-4 border-bottom pb-3">
+        <div>
+            <h4 class="fw-bold text-dark mb-1">Inventory Management</h4>
+            <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-primary rounded-1 small">{{ products|length }} Products</span>
+                <p class="text-secondary small mb-0">| Manage your catalog, pricing, and visibility</p>
+            </div>
+        </div>
+        <div>
+            <a href="{% url 'create_product' %}" class="btn btn-primary fw-bold px-4 rounded-1 shadow-sm">
+                <i class="bi bi-plus-lg me-2"></i>ADD PRODUCT
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm rounded-1">
+                <div class="card-header bg-white py-3 px-4 d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-3">
+                        <h6 class="fw-bold text-dark mb-0 text-uppercase small tracking-wide">Catalog List</h6>
+                        
+                        <div class="dropdown">
+                            <button class="btn btn-light border btn-sm rounded-1 px-3 dropdown-toggle fw-bold text-muted extra-small" type="button" id="tagFilter" data-bs-toggle="dropdown">
+                                <i class="bi bi-filter me-1 text-primary"></i> FILTER: {% if request.GET.tag %}{{ request.GET.tag|upper }}{% else %}ALL TAGS{% endif %}
+                            </button>
+                            <ul class="dropdown-menu shadow-sm border-0 small mt-2">
+                                <li><a class="dropdown-item fw-bold text-primary" href="?">SHOW ALL</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                {% for tag in all_tags %}
+                                    <li><a class="dropdown-item" href="?tag={{ tag.name }}">{{ tag.name|upper }}</a></li>
+                                {% empty %}
+                                    <li><span class="dropdown-item text-muted">No tags found</span></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <a href="{% url 'createtag' %}" class="btn btn-outline-secondary btn-sm rounded-1 fw-bold extra-small px-3">
+                        <i class="bi bi-tags-fill me-1"></i> MANAGE TAGS
+                    </a>
+                </div>
+
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr class="text-muted extra-small text-uppercase">
+                                    <th class="ps-4" style="width: 80px;">Thumbnail</th>
+                                    <th>Product Details</th>
+                                    <th>Category</th>
+                                    <th>Price (INR)</th>
+                                    <th>Attributes</th>
+                                    <th class="text-end pe-4">Manage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in products %}
+                                <tr>
+                                    <td class="ps-4">
+                                        <div class="border rounded-1 p-1 text-center bg-white shadow-xs" style="width: 55px; height: 55px;">
+                                            {% if i.pic %}
+                                                <img src="{{ i.pic.url }}" alt="Product" class="img-fluid" style="max-height: 100%; object-fit: contain;">
+                                            {% else %}
+                                                <i class="bi bi-box-seam text-muted opacity-25" style="font-size: 1.2rem;"></i>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="fw-bold text-dark small">{{ i.name }}</div>
+                                        <div class="text-muted text-truncate extra-small" style="max-width: 220px;">{{ i.description|truncatechars:45 }}</div>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-light text-dark border-0 rounded-1 px-2 py-1 extra-small fw-medium">
+                                            {{ i.category }}
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <div class="text-dark fw-bold small">₹{{ i.price }}</div>
+                                    </td>
+
+                                    <td>
+                                        <div class="d-flex flex-wrap gap-1">
+                                            {% for tag in i.tags.all %}
+                                                <span class="badge bg-primary-subtle text-primary border-0 extra-small rounded-1 px-2 py-1">
+                                                    {{ tag.name|upper }}
+                                                </span>
+                                            {% empty %}
+                                                <span class="text-muted extra-small italic opacity-75">No tags</span>
+                                            {% endfor %}
+                                        </div>
+                                    </td>
+
+                                    <td class="text-end pe-4">
+                                        <div class="d-flex justify-content-end align-items-center gap-2">
+                                            <a href="{% url 'product_detail' i.id %}" class="btn btn-sm btn-outline-primary fw-bold rounded-1 px-3 extra-small">
+                                                VIEW
+                                            </a>
+                                            <a href="{% url 'delete_product' i.id %}" class="btn btn-sm btn-outline-primary fw-bold rounded-1 px-3 extra-small">
+                                                DEL
+                                            </a>
+                                            <a href="{% url 'update_product' i.id %}" class="btn btn-sm btn-outline-primary fw-bold rounded-1 px-3 extra-small">
+                                                EDIT
+                                            </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6" class="text-center py-5">
+                                        <div class="text-muted">
+                                            <i class="bi bi-search display-4 opacity-25 d-block mb-3"></i>
+                                            <p class="mb-0">No products found in the current inventory.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Flipkart Brand Styling */
+    .tracking-wide { letter-spacing: 0.05em; }
+    .extra-small { font-size: 0.7rem; }
+    .rounded-1 { border-radius: 4px !important; }
+    .bg-primary-subtle { background-color: #e7f0ff !important; }
+
+    .btn-primary {
+        background-color: #2874f0 !important; /* Flipkart Blue */
+        border: none;
+    }
+
+    .btn-outline-primary {
+        color: #2874f0;
+        border-color: #dbdbdb;
+        background-color: white;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #2874f0;
+        color: white;
+        border-color: #2874f0;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+    
+    .shadow-xs { box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+</style>
+{% endblock %}

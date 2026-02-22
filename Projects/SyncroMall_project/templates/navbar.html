@@ -1,0 +1,120 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top flipkart-navbar shadow-sm">
+  <div class="container-fluid px-lg-5">
+
+    <a class="navbar-brand d-flex flex-column align-items-start" href="{% url 'landing_page' %}">
+      <span class="brand-text fw-bold italic mb-0"> <img src="{%static 'Images/image.png' %}" width="50" alt="Plus">E-GEN</span>
+    </a>
+
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <form class="d-flex ms-lg-4 me-auto w-50 d-none d-lg-block">
+        <div class="input-group">
+          <input type="text" class="form-control rounded-1 search-input border-0" placeholder="Search for products, orders and more" aria-label="Search">
+        </div>
+      </form>
+
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link px-3 fw-bold text-white {% if request.resolver_match.url_name == 'home' %}active-nav{% endif %}" href="{% url 'dashboard' %}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 fw-bold text-white {% if request.resolver_match.url_name == 'product_catalog' %}active-nav{% endif %}" href="{% url 'product_catalog' %}">Catalog</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 fw-bold text-white {% if request.resolver_match.url_name == 'product' %}active-nav{% endif %}" href="{% url 'product' %}">Products</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 fw-bold text-white {% if request.resolver_match.url_name == 'customer_list' %}active-nav{% endif %}" href="{% url 'customer_list' %}">Customers</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 fw-bold text-white {% if request.resolver_match.url_name == 'customer_list' %}active-nav{% endif %}" href="{% url 'tag_list' %}">Tags</a>
+        </li>     
+        <li class="nav-item dropdown px-lg-2">
+          <a class="nav-link dropdown-toggle text-white fw-bold" href="#" id="logisticsDropdown" role="button" data-bs-toggle="dropdown">
+            Logistics
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark border-0 shadow-lg mt-3 rounded-1">
+            <li><a class="dropdown-item py-2 fw-bold small" href="{% url 'pending_orders' %}"><i class="bi bi-clock me-2 text-warning"></i> PENDING</a></li>
+            <li><a class="dropdown-item py-2 fw-bold small" href="{% url 'out_for_delivery'%}"><i class="bi bi-truck me-2 text-info"></i> IN TRANSIT</a></li>
+            <li><a class="dropdown-item py-2 fw-bold small" href="{% url 'delivered_orders' %}"><i class="bi bi-check-circle me-2 text-success"></i> DELIVERED</a></li>
+            <li><hr class="dropdown-divider opacity-25"></li>
+            <li><a class="dropdown-item py-2 fw-bold small" href="{% url 'order_list' %}">ALL ORDERS</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown px-lg-2">
+          <a class="nav-link dropdown-toggle text-white fw-bold" href="#" id="logisticsDropdown" role="button" data-bs-toggle="dropdown">
+           My Profile
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark border-0 shadow-lg mt-3 rounded-1">
+            <li><a class="dropdown-item py-2 fw-bold small" href="{% url 'pending_orders' %}"><i class="bi bi-clock me-2 text-warning"></i>Settings</a></li>
+            <li><hr class="dropdown-divider opacity-25"></li>
+            <li><a class="dropdown-item py-2 fw-bold small" href="{% url 'logout' %}">Log Out</a></li>
+          </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* Flipkart Brand Navbar */
+.flipkart-navbar {
+    background-color: #0d1b33 !important; /* Official Flipkart Blue */
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.brand-text {
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+    line-height: 1;
+}
+
+.brand-explore {
+    font-size: 0.7rem;
+    font-style: italic;
+}
+
+/* Search Bar Styling */
+.search-input {
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.23);
+}
+
+.search-input:focus {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.23);
+    outline: none;
+}
+
+/* Nav Links */
+.active-nav {
+    border-bottom: 2px solid white;
+}
+
+.nav-link:hover {
+    color: #f0f0f0 !important;
+}
+
+/* Admin Profile Badge */
+.nav-profile-group {
+    height: 32px;
+    transition: background-color 0.2s;
+}
+
+.nav-profile-group:hover {
+    background-color: #f1f3f6 !important;
+}
+
+.extra-small {
+    font-size: 0.65rem;
+}
+
+.italic {
+    font-style: italic;
+}
+</style>

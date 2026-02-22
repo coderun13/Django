@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | SyncroMall AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root { --fk-blue: #2874f0; --fk-orange: #fb641b; }
+        body { background-color: #f1f3f6; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        .signup-container { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 0; }
+        .card-auth { border: none; border-radius: 8px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); width: 100%; max-width: 850px; }
+        
+        /* Left Side: Illustration/Marketing */
+        .auth-info-side { background-color: #fff; padding: 45px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid #f0f0f0; }
+        
+        /* Right Side: Form */
+        .auth-form-side { background: white; padding: 45px; }
+        
+        .form-control { border-radius: 2px; border: 1px solid #e0e0e0; padding: 10px; font-size: 0.9rem; }
+        .form-control:focus { box-shadow: none; border-color: var(--fk-blue); background-color: #f8fbff; }
+        
+        .btn-buyer { background-color: var(--fk-orange); color: white; border: none; font-weight: 700; border-radius: 2px; padding: 12px; transition: 0.3s; }
+        .btn-buyer:hover { background-color: #f4511e; color: white; }
+        
+        .text-blue { color: var(--fk-blue); }
+        .extra-small { font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+
+    {% include 'auth_nav.html' %}
+
+    <div class="signup-container">
+        <div class="container">
+            <div class="card card-auth mx-auto">
+                <div class="row g-0">
+                    
+                    <div class="col-lg-5 auth-info-side d-none d-lg-flex bg-light">
+                        <h2 class="fw-bold text-dark mb-4">Join the <br><span class="text-blue">SyncroMall</span> Community</h2>
+                        <p class="text-muted mb-5">Get access to exclusive tech deals, AI-powered recommendations, and faster checkout.</p>
+                        
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="bg-white shadow-sm rounded-circle p-2"><i class="bi bi-tag-fill text-primary"></i></div>
+                            <div>
+                                <div class="fw-bold small">Best Prices</div>
+                                <div class="extra-small text-muted">Direct from verified sellers.</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="bg-white shadow-sm rounded-circle p-2"><i class="bi bi-truck text-success"></i></div>
+                            <div>
+                                <div class="fw-bold small">Fast Delivery</div>
+                                <div class="extra-small text-muted">Real-time tracking for every order.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7 auth-form-side">
+                        <div class="mb-4">
+                            <h4 class="fw-bold text-dark mb-1">Sign Up</h4>
+                            <p class="text-muted small">Create an account to start shopping.</p>
+                        </div>
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-secondary">First Name</label>
+                                    <input type="text" name="first_name" class="form-control" placeholder="Snehal" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-secondary">Last Name</label>
+                                    <input type="text" name="last_name" class="form-control" placeholder="Singh" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold text-secondary">Email Address</label>
+                                    <input type="email" name="email" class="form-control" placeholder="snehal@example.com" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold text-secondary">Password</label>
+                                    <input type="password" name="password" class="form-control" placeholder="Min. 8 characters" required>
+                                </div>
+                                
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-buyer w-100 shadow-sm">CREATE ACCOUNT</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-4 pt-3 border-top">
+                            <p class="small text-muted">Already have an account? 
+                                <a href="{% url 'login' %}" class="text-blue fw-bold text-decoration-none">Login</a>
+                            </p>
+                            <p class="extra-small text-muted mt-3">
+                                By signing up, you agree to SyncroMall's <a href="#" class="text-decoration-none">Terms of Use</a> and <a href="#" class="text-decoration-none">Privacy Policy</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

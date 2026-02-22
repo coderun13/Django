@@ -1,0 +1,18 @@
+# Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Database
+db.sqlite3
+
+# Secrets
+.env
+
+# Ignore the settings file
+db/settings.py

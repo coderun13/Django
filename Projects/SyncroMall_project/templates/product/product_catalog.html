@@ -1,0 +1,139 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid bg-light min-vh-100 py-3 px-lg-5">
+    <div class="row g-3">
+        
+        <div class="col-lg-3 d-none d-lg-block">
+            <div class="card border-0 shadow-sm rounded-1 sticky-top" style="top: 80px; z-index: 100;">
+                <div class="card-header bg-white border-bottom py-3">
+                    <h6 class="fw-bold mb-0 text-dark">Filters</h6>
+                </div>
+                <div class="card-body p-0">
+                    <div class="p-3 border-bottom">
+                        <p class="extra-small fw-bold text-uppercase text-muted mb-2 tracking-wide">Categories</p>
+                        <a href="{% url 'product_catalog' %}" class="text-decoration-none text-dark small d-block mb-1">
+                            <i class="bi bi-chevron-left extra-small me-1"></i> All Products
+                        </a>
+                        <div class="ps-3 border-start ms-2 py-1">
+                            <a href="#" class="text-primary small fw-bold d-block">
+                                {{ products.0.category|default:"Catalog" }}
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="p-3 border-bottom">
+                        <p class="extra-small fw-bold text-uppercase text-muted mb-3 tracking-wide">Price</p>
+                        <input type="range" class="form-range custom-range mb-2" min="0" max="10000" id="priceRange">
+                        <div class="d-flex align-items-center gap-2">
+                            <select class="form-select form-select-sm rounded-1 small"><option>Min</option></select>
+                            <span class="text-muted small">to</span>
+                            <select class="form-select form-select-sm rounded-1 small"><option>₹10000+</option></select>
+                        </div>
+                    </div>
+
+                    <div class="p-3 border-bottom">
+                        <p class="extra-small fw-bold text-uppercase text-muted mb-2 tracking-wide">Attributes</p>
+                        {% for tag in all_tags %}
+                        <div class="form-check mb-1">
+                            <input class="form-check-input shadow-none" type="checkbox" id="tag{{tag.id}}" 
+                                   {% if request.GET.tag == tag.name %}checked{% endif %}
+                                   onclick="window.location.href='?tag={{ tag.name }}'">
+                            <label class="form-check-label small text-dark cursor-pointer" for="tag{{tag.id}}">
+                                {{ tag.name }}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="card border-0 shadow-sm rounded-1 overflow-hidden">
+                <div class="card-header bg-white border-bottom py-3 px-4">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                        <p class="mb-0 small text-muted">
+                            Showing <span class="fw-bold text-dark">1 – {{ products|length }}</span> of {{ products|length }} results
+                        </p>
+                        <div class="d-flex align-items-center gap-3 overflow-auto pb-1">
+                            <span class="extra-small fw-bold text-muted text-uppercase tracking-wide text-nowrap">Sort By</span>
+                            <a href="#" class="extra-small fw-bold text-primary text-decoration-none text-nowrap border-bottom border-primary border-2 pb-1">Relevance</a>
+                            <a href="#" class="extra-small fw-bold text-muted text-decoration-none text-nowrap pb-1">Popularity</a>
+                            <a href="#" class="extra-small fw-bold text-muted text-decoration-none text-nowrap pb-1">Price -- Low to High</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-4 bg-white">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4">
+                        {% for product in products %}
+                        <div class="col">
+                            <div class="product-card h-100 d-flex flex-column position-relative">
+                                
+                                <div class="product-img-wrapper position-relative text-center mb-3">
+                                    {% if product.pic %}
+                                        <img src="{{ product.pic.url }}" alt="{{ product.name }}" class="img-fluid" style="max-height: 200px; object-fit: contain;">
+                                    {% else %}
+                                        <div class="bg-light rounded-1 d-flex align-items-center justify-content-center" style="height: 200px;">
+                                            <i class="bi bi-box-seam display-6 text-muted opacity-25"></i>
+                                        </div>
+                                    {% endif %}
+                                    
+                                    <button class="btn btn-white btn-sm rounded-circle position-absolute top-0 end-0 m-2 shadow-sm border-0" style="z-index: 2;">
+                                        <i class="bi bi-heart text-muted"></i>
+                                    </button>
+                                </div>
+
+                                <div class="mt-auto px-1">
+                                    <div class="text-muted extra-small fw-bold text-uppercase mb-1">{{ product.category }}</div>
+                                    
+                                    <h6 class="text-dark small fw-medium mb-1 text-truncate">
+                                        <a href="{% url 'product_detail' product.id %}" class="stretched-link text-decoration-none text-dark">
+                                            {{ product.name }}
+                                        </a>
+                                    </h6>
+                                    
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <span class="fw-bold text-dark">₹{{ product.price }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Flipkart Catalog Aesthetics */
+    .product-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        padding: 10px;
+        border-radius: 4px;
+    }
+    
+    /* Blue title on card hover */
+    .product-card:hover .stretched-link {
+        color: #2874f0 !important;
+    }
+    
+    .product-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .custom-range::-webkit-slider-thumb { background: #2874f0; }
+    .custom-range::-moz-range-thumb { background: #2874f0; }
+
+    .extra-small { font-size: 0.7rem; }
+    .tracking-wide { letter-spacing: 0.05em; }
+    .rounded-1 { border-radius: 4px !important; }
+    .italic { font-style: italic; }
+    .cursor-pointer { cursor: pointer; }
+</style>
+{% endblock %}
