@@ -13,3 +13,6 @@ db.sqlite3
 
 # Secrets
 .env
+
+# Ignore the settings file
+booktech/settings.py
